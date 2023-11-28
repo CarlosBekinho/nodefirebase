@@ -1,30 +1,19 @@
-const admin = require('firebase-admin');
 const productServices = require('../services/productServices');
 
 async function getProduct(req, res) {
-    try {
-        const produtosRef = admin.database().ref('produto/Descartáveis');
-
-        produtosRef.once('value')
-            .then((snapshot) => {
-                const produtos = [];
-
-                snapshot.forEach((childSnapshot) => {
-                    const produto = childSnapshot.val();
-                    produto.id = childSnapshot.key;
-                    produtos.push(produto);
-                });
-
-                res.json(produtos); // Enviar a resposta como JSON
-                console.log(produtos);
-            })
-            .catch((erro) => {
-                res.status(500).json({ error: erro.message }); // Enviar erro como JSON
-            });
-    } catch (error) {
-        res.status(500).json({ error: error.message }); // Enviar erro como JSON
-    }
+	try {
+		const response = await productServices.getProduct();
+		res.status(200).json(response);
+	} catch (err) {
+		console.error(err);
+		res.status(500).send("Error");
+	}
 }
+
+
+
+
+
 
 async function createProduct(req, res) {
     try {

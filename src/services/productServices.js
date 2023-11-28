@@ -1,5 +1,10 @@
-async function GetProductServices() { 
-	return "Tudo funcionado";
+const productModel = require("../models/produtoModel");
+
+
+
+async function getProduct() { 
+	const res = await productModel.getProducts();
+	return res;
 }
 
 async function createProductServices(){
@@ -14,5 +19,5 @@ async function deleteProductServices(){
     return "Tudo funcionado";
 }
 module.exports = {
-	GetProductServices,	createProductServices, updateProductServices, deleteProductServices 
+	getProduct,	createProductServices, updateProductServices, deleteProductServices 
 };
