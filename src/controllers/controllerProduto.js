@@ -14,7 +14,6 @@ async function getProduct(req, res) {
 
 
 
-
 async function createProduct(req, res) {
     try {
         const produto = req.body
