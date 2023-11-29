@@ -32,39 +32,39 @@ async function createProduct(req, res) {
 }
 
 
-async function updateProduct(req, res) {
-    try {
-        const produto = req.body
-        const id = req.params.id
+// async function updateProduct(req, res) {
+//     try {
+//         const produto = req.body
+//         const id = req.params.id
 
-        admin.database().ref(`produto/Descartáveis/${id}`).update(produto)
-            .then(() => {
-                res.send("O produto foi atualizado com sucesso")
-            })
-            .catch((erro) => {
-                res.status(500).send(erro)
-            })
-    } catch (error) {
-        res.status(500).json({ error: error.message }); // Enviar erro como JSON
-    }
-}
+//         admin.database().ref(`produto/Descartáveis/${id}`).update(produto)
+//             .then(() => {
+//                 res.send("O produto foi atualizado com sucesso")
+//             })
+//             .catch((erro) => {
+//                 res.status(500).send(erro)
+//             })
+//     } catch (error) {
+//         res.status(500).json({ error: error.message }); // Enviar erro como JSON
+//     }
+// }
 
-async function deleteProduct(req, res) {
-    try {
-        const id = req.params.id
+// async function deleteProduct(req, res) {
+//     try {
+//         const id = req.params.id
 
-        admin.database().ref(`produto/Descartáveis/${id}`).remove()
-            .then(() => {
-                res.send("O produto foi removido com sucesso")
-            })
-            .catch((error) => {
-                res.status(500).send(erro);
-            })
+//         admin.database().ref(`produto/Descartáveis/${id}`).remove()
+//             .then(() => {
+//                 res.send("O produto foi removido com sucesso")
+//             })
+//             .catch((error) => {
+//                 res.status(500).send(erro);
+//             })
 
-    } catch (error) {
-        res.status(500).json({ error: error.message }); // Enviar erro como JSON
-    }
-}
+//     } catch (error) {
+//         res.status(500).json({ error: error.message }); // Enviar erro como JSON
+//     }
+// }
 
 
 module.exports = { getProduct, createProduct, updateProduct, deleteProduct };
