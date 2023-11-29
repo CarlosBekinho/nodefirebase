@@ -1,26 +1,34 @@
-const productModel = require("../models/produtoModel");
-
-
+const admin = require('firebase-admin');
 
 async function getProducts() {
-	try {
-		const produtosRef = admin.database().ref('produto/Descartáveis');
+    try {
+        const produtosRef = admin.database().ref('produto/Descartáveis');
+        const snapshot = await produtosRef.once('value');
+        const produtos = [];
 
-		const snapshot = await produtosRef.once('value');
+        snapshot.forEach((childSnapshot) => {
+            const produto = childSnapshot.val();
+            produto.id = childSnapshot.key;
+            produtos.push(produto);
+        });
 
-		const produtos = [];
-
-		snapshot.forEach((childSnapshot) => {
-			const produto = childSnapshot.val();
-			produto.id = childSnapshot.key;
-			produtos.push(produto);
-		});
-
-		return produtos;
-	} catch (error) {
-		throw error;
-	}
+        return produtos;
+    } catch (error) {
+        throw error;
+    }
 }
+
+async function createProducts() {
+    try {
+        const ref = admin.database().ref("produto/Descartáveis");
+        await ref.push(product);
+        return 'Produto criado com sucesso';
+    } catch (error) {
+        throw error;
+    }
+}
+
+
 
 // async function createProductServices(){
 //     return "Tudo funcionado";
@@ -34,5 +42,5 @@ async function getProducts() {
 //     return "Tudo funcionado";
 // }
 module.exports = {
-	getProducts,	createProductServices, updateProductServices, deleteProductServices 
+	getProducts, createProducts 
 };

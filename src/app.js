@@ -9,7 +9,8 @@ const cors = require('cors');
 
 app.use(cors());
 
-const  controllerProduto = require("./controllers/controllerProduto")
+const  productServices = require("./services/productServices")
+
 
 
 const serviceAccount = require('../chave.json')
@@ -20,10 +21,10 @@ admin.initializeApp({
     storageBucket: "teste-908b8.appspot.com"
 });
 
-app.get("/produtos/descartaveis", controllerProduto.getProduct);
-app.post("/produto/descartaveis",controllerProduto.createProduct);
-app.post("/atualizar/descartaveis/:id", controllerProduto.updateProduct);
-app.delete("/delete/descartaveis/:id", controllerProduto.deleteProduct);
+app.get("/produtos/descartaveis", productServices.getProducts);
+app.post("/produto/descartaveis",productServices.createProducts);
+// app.post("/atualizar/descartaveis/:id", productServices.updateProduct);
+// app.delete("/delete/descartaveis/:id", productServices.deleteProduct);
 
 
 
