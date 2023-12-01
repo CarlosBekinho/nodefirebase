@@ -22,6 +22,28 @@ async function createProduct(req, res) {
     }
 }
 
+async function updateProduct(req, res) {
+    try {
+        const { body } = req;
+        const response = await productServices.updateProducts(body);
+        res.status(200).json(response);
+    } catch (err) {
+        console.error(err);
+        res.status(500).send("Error");
+    }
+}
+
+async function deleteProduct(req, res) {
+    try {
+        const { body } = req;
+        const response = await productServices.deleteProducts(body);
+        res.status(200).json(response);
+    } catch (err) {
+        console.error(err);
+        res.status(500).send("Error");
+    }
+}
+
 
 // async function updateProduct(req, res) {
 //     try {
@@ -58,4 +80,4 @@ async function createProduct(req, res) {
 // }
 
 
-module.exports = { getProduct, createProduct};
+module.exports = { getProduct, createProduct, updateProduct, deleteProduct};

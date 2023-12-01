@@ -23,8 +23,8 @@ admin.initializeApp({
 
 app.get("/produtos/descartaveis", productServices.getProducts);
 app.post("/produto/descartaveis",productServices.createProducts);
-// app.post("/atualizar/descartaveis/:id", productServices.updateProduct);
-// app.delete("/delete/descartaveis/:id", productServices.deleteProduct);
+app.post("/atualizar/descartaveis/:id", productServices.updateProducts);
+app.delete("/delete/descartaveis/:id", productServices.deleteProducts);
 
 
 
